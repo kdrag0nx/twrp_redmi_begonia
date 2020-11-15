@@ -1,9 +1,3 @@
-on boot
-    wait /sbin/patchlevel_set
-
-on init
-    start patchlevel
-
 on fs
     export ANDROID_ROOT /system_root
     install_keyring
@@ -11,13 +5,6 @@ on fs
 on fs
     start hwservicemanager
     start servicemanager
-
-service patchlevel /sbin/patchlevel.sh
-    user root
-    group root
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
 
 service teei_daemon /sbin/teei_daemon
     user root
