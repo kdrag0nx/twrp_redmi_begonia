@@ -1,5 +1,0 @@
-dir.recovery = /system/bin
-dir.recovery = /vendor/bin
-[recovery]
-namespace.default.search.paths += /system/${LIB}
-namespace.default.search.paths += /vendor/${LIB}
