@@ -32,75 +32,75 @@ on fs
 #     disabled
 #     seclabel u:r:recovery:s0
 
-service keystore_auth /system/bin/keystore_auth
-    oneshot
-    user system
-    group root
-    disabled
-    seclabel u:r:recovery:s0
+# service keystore_auth /system/bin/keystore_auth
+#     oneshot
+#     user system
+#     group root
+#     disabled
+#     seclabel u:r:recovery:s0
 
-service keystore /system/bin/keystore /tmp/misc/keystore
-    user root
-    group root drmrpc readproc
-    disabled
-    seclabel u:r:recovery:s0
+# service keystore /system/bin/keystore /tmp/misc/keystore
+#     user root
+#     group root drmrpc readproc
+#     disabled
+#     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
+# service gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
+#     user root
+#     group root
+#     disabled
+#     seclabel u:r:recovery:s0
 
-service keymaster-4-0 /vendor/bin/android.hardware.keymaster@4.0-service.beanpod
-    user root
-    group root drmrpc
-    disabled
-    seclabel u:r:recovery:s0
+# service keymaster-4-0 /vendor/bin/android.hardware.keymaster@4.0-service.beanpod
+#     user root
+#     group root drmrpc
+#     disabled
+#     seclabel u:r:recovery:s0
 
-# on late-fs
-#     wait_for_prop hwservicemanager.ready "true"
-#     start vendor.keymaster-4-0
-#     start vendor.keymaster-4-0-trustonic
-#     start vendor.keymaster-4-0
-#     start vendor.keymaster-4-0-trustonic
-#     start vendor.keymaster-4-0
-#     start keymaster_attestation-1-1
-#     exec_start wait_for_keymaster
-#     mount_all --late
+# # on late-fs
+# #     wait_for_prop hwservicemanager.ready "true"
+# #     start vendor.keymaster-4-0
+# #     start vendor.keymaster-4-0-trustonic
+# #     start vendor.keymaster-4-0
+# #     start vendor.keymaster-4-0-trustonic
+# #     start vendor.keymaster-4-0
+# #     start keymaster_attestation-1-1
+# #     exec_start wait_for_keymaster
+# #     mount_all --late
 
-on property:hwservicemanager.ready=true
-    start teei_daemon
-    # start capi-2-0
-    start hidl_memory
-    start keymaster-4-0
-    start gatekeeper-1-0
+# on property:hwservicemanager.ready=true
+#     start teei_daemon
+#     # start capi-2-0
+#     start hidl_memory
+#     start keymaster-4-0
+#     start gatekeeper-1-0
 
-on property:ro.crypto.state=unsupported
-    stop hidl_memory
-    # stop capi-2-0
-    stop teei_daemon
-    stop keymaster-4-0
-    stop gatekeeper-1-0
-    stop servicemanager
-    stop hwservicemanager
+# on property:ro.crypto.state=unsupported
+#     stop hidl_memory
+#     # stop capi-2-0
+#     stop teei_daemon
+#     stop keymaster-4-0
+#     stop gatekeeper-1-0
+#     stop servicemanager
+#     stop hwservicemanager
 
-on property:ro.crypto.state=unencrypted
-    stop hidl_memory
-    # stop capi-2-0
-    stop teei_daemon
-    stop keymaster-4-0
-    stop gatekeeper-1-0
-    stop servicemanager
-    stop hwservicemanager
+# on property:ro.crypto.state=unencrypted
+#     stop hidl_memory
+#     # stop capi-2-0
+#     stop teei_daemon
+#     stop keymaster-4-0
+#     stop gatekeeper-1-0
+#     stop servicemanager
+#     stop hwservicemanager
 
-on property:twrp.decrypt.done=true
-    stop hidl_memory
-    # stop capi-2-0
-    stop teei_daemon
-    stop keymaster-4-0
-    stop gatekeeper-1-0
-    stop servicemanager
-    stop hwservicemanager
+# on property:twrp.decrypt.done=true
+#     stop hidl_memory
+#     # stop capi-2-0
+#     stop teei_daemon
+#     stop keymaster-4-0
+#     stop gatekeeper-1-0
+#     stop servicemanager
+#     stop hwservicemanager
 
 on boot
     # Enable Power modes and set the CPU Freq Sampling rates

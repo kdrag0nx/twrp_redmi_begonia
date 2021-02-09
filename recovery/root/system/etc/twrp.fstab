@@ -19,7 +19,7 @@
 /dtbo             emmc     /dev/block/platform/bootdevice/by-name/dtbo         flags=display="Dtbo";backup=1;flashimg=1
 /persist          ext4     /dev/block/platform/bootdevice/by-name/persist      flags=display="Persist";backup=1
 /persist_image    emmc     /dev/block/platform/bootdevice/by-name/persist      flags=display="Persist Image";backup=1
-/recovery         emmc     /dev/block/platform/bootdevice/by-name/recovery     flags=display="Recovery"
+/recovery         emmc     /dev/block/platform/bootdevice/by-name/recovery     flags=display="Recovery";backup=1;flashimg=1
 
 /logo             emmc     /dev/block/platform/bootdevice/by-name/logo         flags=display="logo";backup=1;flashimg=1
 /metadata         emmc     /dev/block/platform/bootdevice/by-name/metadata

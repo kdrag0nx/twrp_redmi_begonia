@@ -1,6 +1,6 @@
+dir.recovery = /sbin
 dir.recovery = /system/bin
-dir.recovery += /vendor/bin
+dir.recovery = /vendor/bin
 [recovery]
 namespace.default.search.paths = /system/${LIB}
 namespace.default.search.paths += /vendor/${LIB}
-namespace.default.search.paths += /product/${LIB}
