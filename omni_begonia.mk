@@ -22,11 +22,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := begonia
-PRODUCT_NAME := omni_begonia
-PRODUCT_BRAND := Redmi
-PRODUCT_MODEL := Redmi Note 8 Pro
 PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_BRAND := Redmi
+PRODUCT_DEVICE := begonia
+PRODUCT_MODEL := Redmi Note 8 Pro
+PRODUCT_NAME := omni_device
+BOARD_VENDOR := Redmi
+TARGET_VENDOR := Redmi
 
 # HACK: Set vendor patch level
 PRODUCT_PROPERTY_OVERRIDES += \
