@@ -26,7 +26,7 @@ PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Redmi
 PRODUCT_DEVICE := begonia
 PRODUCT_MODEL := Redmi Note 8 Pro
-PRODUCT_NAME := omni_device
+PRODUCT_NAME := omni_begonia
 BOARD_VENDOR := Redmi
 TARGET_VENDOR := Redmi
 

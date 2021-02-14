@@ -119,6 +119,8 @@ TW_DEFAULT_LANGUAGE := zh_CN
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_Y_OFFSET := 80
 TW_H_OFFSET := -80
+TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT  := 2340
 
 # brightness
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
