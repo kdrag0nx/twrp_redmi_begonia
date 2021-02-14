@@ -117,11 +117,11 @@ TW_EXCLUDE_TWRPAPP := true
 TW_EXTRA_LANGUAGES := true
 TW_DEFAULT_LANGUAGE := zh_CN
 TW_SCREEN_BLANK_ON_BOOT := true
-TW_Y_OFFSET := 80
-TW_H_OFFSET := -80
+# TW_Y_OFFSET := 80
+# TW_H_OFFSET := -80
 
 # brightness
-TW_BRIGHTNESS_PATH := "/sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness"
+TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 512
 
@@ -141,3 +141,6 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_SECURITY_PATCH := 2099-12-31
+
+# BPRB
+PB_TORCH_PATH := "/sys/class/flashlight/mt-flash-led1"
