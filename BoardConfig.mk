@@ -111,7 +111,7 @@ TW_INCLUDE_FBE := true
 TW_DEVICE_VERSION := MIUI_12.5
 
 # UI
-# TW_THEME := portrait_hdpi
+TW_THEME := portrait_hdpi
 TW_NO_REBOOT_RECOVERY := false
 TW_EXCLUDE_TWRPAPP := true
 TW_EXTRA_LANGUAGES := true
