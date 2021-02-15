@@ -151,3 +151,18 @@ PLATFORM_SECURITY_PATCH := 2099-12-31
 # BPRB
 PB_TORCH_PATH := "/sys/class/flashlight/mt-flash-led1"
 MAINTAINER := Github@RC1844
+
+#SHRP_Variables
+SHRP_PATH := device/redmi/begonia
+SHRP_MAINTAINER := RC1844
+SHRP_DEVICE_CODE := begonia
+# SHRP_EDL_MODE := 1
+SHRP_EXTERNAL := /external_sd
+SHRP_INTERNAL := /sdcard
+SHRP_OTG := /usb_otg
+# SHRP_FLASH := 1
+SHRP_FONP_1 := /sys/class/leds/led:torch_0/brightness
+SHRP_FONP_2 := /sys/class/leds/led:torch_1/brightness
+SHRP_FONP_3 := /sys/class/leds/led:switch/brightness
+SHRP_FLASH_MAX_BRIGHTNESS := 2047
+SHRP_REC := /dev/block/platform/bootdevice/by-name/recovery
