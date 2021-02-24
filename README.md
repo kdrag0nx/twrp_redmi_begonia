@@ -2,6 +2,6 @@
 
 TWRP tree for begonia
 
-Not completed, not working
+Not completed, it can work now, but cannot decrypt /data
 
-img Build by <https://github.com/RC1844/Actions-Build-TWRP-For-Begonia>
+Releases build by <https://github.com/RC1844/Actions-Build-TWRP-For-Begonia>
