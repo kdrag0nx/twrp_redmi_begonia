@@ -154,14 +154,15 @@ MAINTAINER := RC1844
 
 #SHRP_Variables
 SHRP_DEVICE_CODE := begonia
-SHRP_PATH := device/redmi/$(SHRP_DEVICE_CODE)
+SHRP_PATH := device/redmi/begonia
 SHRP_MAINTAINER := RC1844
 SHRP_DARK := true
+SHRP_DEVICE_TYPE := A_Only
 SHRP_EXTERNAL := /external_sd
 SHRP_INTERNAL := /sdcard
 SHRP_OTG := /usb_otg
 
-# SHRP_FLASH := 1
+SHRP_FLASH := 1
 SHRP_CUSTOM_FLASHLIGHT := true
 SHRP_FONP_1 := /sys/class/leds/torch-light0/brightness
 SHRP_FONP_2 := /sys/class/leds/torch-light1/brightness
@@ -169,10 +170,15 @@ SHRP_FONP_3 := /sys/class/leds/torch-light2/brightness
 SHRP_FLASH_MAX_BRIGHTNESS := 31
 
 # SHRP DEFAULT ADDONS
-INC_IN_REC_ADDON_1 := true
+# INC_IN_REC_ADDON_1 := true
 # INC_IN_REC_ADDON_2 := true
 INC_IN_REC_ADDON_3 := true
 INC_IN_REC_ADDON_4 := true
 INC_IN_REC_MAGISK := true
+
+SHRP_SKIP_DEFAULT_ADDON_1 := true
+SHRP_SKIP_DEFAULT_ADDON_2 := true
+# SHRP_SKIP_DEFAULT_ADDON_3 := true
+# SHRP_SKIP_DEFAULT_ADDON_4 := true
 
 SHRP_REC := /dev/block/platform/bootdevice/by-name/recovery
