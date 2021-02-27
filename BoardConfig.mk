@@ -150,13 +150,14 @@ PLATFORM_SECURITY_PATCH := 2099-12-31
 
 # BPRB
 PB_TORCH_PATH := /sys/class/leds/torch-light0
+PB_TORCH_MAX_BRIGHTNESS := 4
 MAINTAINER := RC1844
 
 #SHRP_Variables
 SHRP_DEVICE_CODE := begonia
 SHRP_PATH := device/redmi/begonia
 SHRP_MAINTAINER := RC1844
-# SHRP_DARK := true
+SHRP_DARK := true
 SHRP_DEVICE_TYPE := A_Only
 SHRP_EXTERNAL := /external_sd
 SHRP_INTERNAL := /sdcard
@@ -164,10 +165,10 @@ SHRP_OTG := /usb_otg
 
 # SHRP_FLASH := 1
 # SHRP_CUSTOM_FLASHLIGHT := true
-SHRP_FONP_1 := /sys/class/leds/torch-light0/brightness
-SHRP_FONP_2 := /sys/class/leds/torch-light1/brightness
-SHRP_FONP_3 := /sys/class/leds/torch-light2/brightness
-SHRP_FLASH_MAX_BRIGHTNESS := 2047
+# SHRP_FONP_1 := /sys/class/leds/torch-light0/brightness
+# SHRP_FONP_2 := /sys/class/leds/torch-light1/brightness
+# SHRP_FONP_3 := /sys/class/leds/torch-light2/brightness
+# SHRP_FLASH_MAX_BRIGHTNESS := 4
 
 # SHRP DEFAULT ADDONS
 # INC_IN_REC_ADDON_1 := true
