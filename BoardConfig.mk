@@ -163,19 +163,19 @@ SHRP_EXTERNAL := /external_sd
 SHRP_INTERNAL := /sdcard
 SHRP_OTG := /usb_otg
 
-# SHRP_FLASH := 1
-# SHRP_CUSTOM_FLASHLIGHT := true
-# SHRP_FONP_1 := /sys/class/leds/torch-light0/brightness
-# SHRP_FONP_2 := /sys/class/leds/torch-light1/brightness
-# SHRP_FONP_3 := /sys/class/leds/torch-light2/brightness
-# SHRP_FLASH_MAX_BRIGHTNESS := 4
+SHRP_FLASH := 1
+SHRP_CUSTOM_FLASHLIGHT := true
+SHRP_FONP_1 := /sys/class/leds/torch-light0/brightness
+SHRP_FONP_2 := /sys/class/leds/torch-light1/brightness
+SHRP_FONP_3 := /sys/class/leds/torch-light2/brightness
+SHRP_FLASH_MAX_BRIGHTNESS := 4
 
 # SHRP DEFAULT ADDONS
-# INC_IN_REC_ADDON_1 := true
-# INC_IN_REC_ADDON_2 := true
-# INC_IN_REC_ADDON_3 := true
-# INC_IN_REC_ADDON_4 := true
-# INC_IN_REC_MAGISK := true
+INC_IN_REC_ADDON_1 := true
+INC_IN_REC_ADDON_2 := true
+INC_IN_REC_ADDON_3 := true
+INC_IN_REC_ADDON_4 := true
+INC_IN_REC_MAGISK := true
 
 # SHRP_SKIP_DEFAULT_ADDON_1 := true
 # SHRP_SKIP_DEFAULT_ADDON_2 := true
