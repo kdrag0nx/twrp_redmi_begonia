@@ -78,6 +78,7 @@ TARGET_OTA_ASSERT_DEVICE := begonia,begoniain
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
+BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 0x80000
