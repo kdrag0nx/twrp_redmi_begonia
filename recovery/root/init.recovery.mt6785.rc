@@ -1,19 +1,30 @@
 import /microtrust_begonia.rc
 
-on early-init
-    mount debugfs debugfs /sys/kernel/debug
-    chmod 0755 /sys/kernel/debug
+on init
+    # Create a more standard /dev/block layout for our scripts
+    symlink /dev/block/platform/bootdevice /dev/block/bootdevice
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
 
 on fs
-    wait /dev/block/platform/bootdevice/
-    symlink /dev/block/platform/bootdevice/ /dev/block/bootdevice
+    mkdir /mnt/vendor 0700 root root
+    mkdir /mnt/vendor/protect_f 0700 root root
+    mkdir /mnt/vendor/protect_s 0700 root root
+    mkdir /mnt/vendor/nvdata 0700 root root
+    mkdir /mnt/vendor/nvcfg 0700 root root
+    mkdir /mnt/vendor/persist 0700 root root
+    mount ext4 /dev/block/platform/bootdevice/by-name/protect1 /mnt/vendor/protect_f
+    mount ext4 /dev/block/platform/bootdevice/by-name/protect2 /mnt/vendor/protect_s
+    mount ext4 /dev/block/platform/bootdevice/by-name/nvdata /mnt/vendor/nvdata
+    mount ext4 /dev/block/platform/bootdevice/by-name/nvcfg /mnt/vendor/nvcfg
+    mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
+    symlink /mnt/vendor/protect_f /vendor/protect_f
+    symlink /mnt/vendor/protect_s /vendor/protect_s
+    symlink /mnt/vendor/nvcfg /vendor/nvcfg
+    symlink /mnt/vendor/nvdata /vendor/nvdata
+
     install_keyring
 
-service capi-2-0 /sbin/vendor.microtrust.hardware.capi@2.0-service
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
+on post-fs
 
 service keystore_auth /system/bin/keystore_auth
     oneshot
@@ -28,109 +39,42 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service vendor.keymaster-4-0-beanpod /vendor/bin/hw/android.hardware.keymaster@4.0-service.beanpod
+service keymaster-4-0-beanpod /vendor/bin/hw/android.hardware.keymaster@4.0-service.beanpod
     user root
     group root drmrpc
-    seclabel u:r:recovery:s0
-
-service keymaster_attestation-1-1 /vendor/bin/hw/vendor.mediatek.hardware.keymaster_attestation@1.1-service
-    interface vendor.mediatek.hardware.keymaster_attestation@1.0::IKeymasterDevice default
-    interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
-    user root
-    group root
     disabled
     seclabel u:r:recovery:s0
 
 on property:hwservicemanager.ready=true
-    start vendor.keymaster-4-0-beanpod
-    start keymaster_attestation-1-1
-    start vendor.boot-hal-1-1
-    exec_start wait_for_keymaster
-    mount_all --late
-
-# on property:hwservicemanager.ready=true
-#     start teei_daemon
-#     # start capi-2-0
-#     start hidl_memory
-#     start keymaster-4-0
-#     start gatekeeper-1-0
+    write /proc/bootprof "start teei_daemon (on fs)"
+    start teei_daemon
+    write /proc/bootprof "start teei_daemon end (on fs)"
+    start keymaster-4-0-beanpod
+    start gatekeeper-1-0
 
 on property:ro.crypto.state=unsupported
-    stop hidl_memory
-    # stop capi-2-0
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-4-0-beanpod
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
 
 on property:ro.crypto.state=unencrypted
-    stop hidl_memory
-    # stop capi-2-0
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-4-0-beanpod
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
 
 on property:twrp.decrypt.done=true
-    stop hidl_memory
-    # stop capi-2-0
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-4-0-beanpod
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
-
-on boot
-    # Enable Power modes and set the CPU Freq Sampling rates
-    write /proc/hps/enabled 0
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu4/online 1
-    write /sys/devices/system/cpu/cpu5/online 1
-    write /sys/devices/system/cpu/cpu6/online 1
-    write /sys/devices/system/cpu/cpu7/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_min_freq 300000
-    setprop recovery.perf.mode 0
-
-
-on property:recovery.perf.mode=1
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu4/online 1
-    write /sys/devices/system/cpu/cpu5/online 1
-    write /sys/devices/system/cpu/cpu6/online 1
-    write /sys/devices/system/cpu/cpu7/online 1
-
-on property:recovery.perf.mode=0
-    write /sys/devices/system/cpu/cpu1/online 0
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 0
-    write /sys/devices/system/cpu/cpu4/online 1
-    write /sys/devices/system/cpu/cpu5/online 0
-    write /sys/devices/system/cpu/cpu6/online 1
-    write /sys/devices/system/cpu/cpu7/online 0
