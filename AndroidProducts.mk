@@ -15,7 +15,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_begonia.mk
+    $(LOCAL_DIR)/twrp_begonia.mk
 
 COMMON_LUNCH_CHOICES := \
     omni_begonia-user \

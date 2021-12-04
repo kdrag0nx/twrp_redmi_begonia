@@ -15,24 +15,22 @@
 #
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-
-# Inherit from our custom product configuration
-$(call inherit-product, vendor/omni/config/common.mk)
-
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root) \
     $(LOCAL_PATH)/prebuilt/dtb:dtb
 
-## Device identifier. This must come after all inclusions
-PRODUCT_MANUFACTURER := Xiaomi
-PRODUCT_BRAND := Redmi
-PRODUCT_DEVICE := begonia
-PRODUCT_MODEL := Redmi Note 8 Pro
-PRODUCT_NAME := omni_begonia
 BOARD_VENDOR := Redmi
-TARGET_VENDOR := Redmi
+PRODUCT_BRAND := Redmi
 
+PRODUCT_DEVICE := begonia
+PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_MODEL := Redmi Note 8 Pro
+PRODUCT_NAME := twrp_begonia
+TARGET_VENDOR := Redmi
+PRODUCT_RELEASE_NAME := begonia
 # HACK: Set vendor patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2099-12-31
