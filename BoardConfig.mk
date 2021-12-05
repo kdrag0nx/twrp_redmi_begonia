@@ -42,7 +42,7 @@ BOARD_MKBOOTIMG_ARGS := \
 
 DEVICE_PATH := device/redmi/begonia
 BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)/prebuilt/dtb
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/recovery_dtbo
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
 
 RECOVERY_SDCARD_ON_DATA := true
