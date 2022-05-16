@@ -52,7 +52,7 @@ BOARD_RAMDISK_OFFSET := 0x07c08000
 BOARD_DTB_OFFSET := 0x0bc08000
 BOARD_SECOND_OFFSET := 0xbff88000
 
-BOARD_BOOTIMG_HEADER_VERSION := 2
+BOARD_BOOT_HEADER_VERSION := 2
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 
@@ -140,6 +140,7 @@ TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 900
 TW_SCREEN_BLANK_ON_BOOT := true
 
+TW_OVERRIDE_PROPS_ADDITIONAL_PARTITIONS := vendor system
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_NTFS_3G := true
 TW_USE_TOOLBOX := true
@@ -177,9 +178,9 @@ SHRP_OTG := /usb_otg
 
 SHRP_FLASH := 1
 SHRP_CUSTOM_FLASHLIGHT := true
-SHRP_FONP_1 := /sys/class/leds/torch-light0/brightness
-SHRP_FONP_2 := /sys/class/leds/torch-light1/brightness
-SHRP_FONP_3 := /sys/class/leds/torch-light2/brightness
+SHRP_FONP_1 := "/sys/class/leds/led:torch_0"
+SHRP_FONP_2 := "/sys/class/leds/led:torch_1"
+SHRP_FONP_3 := "/sys/class/leds/led:torch_2"
 SHRP_FLASH_MAX_BRIGHTNESS := 4
 
 # SHRP DEFAULT ADDONS
